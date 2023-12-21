@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function checkDocumentFocus() {
+            if (!document.hasFocus()) {
+                document.getElementById('wait').innerHTML =''
+            }
+        }
+
+        window.addEventListener("focusout", checkDocumentFocus);
+
+    </script>
+    <title>Upload Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        h4 {
+            color: #888;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload image for deblurring</h2>
+        <h4>From Théo, Cyriane and Saad</h4>
+        <form method="post" action="/" enctype="multipart/form-data">
+            <input type="file" name="image" id="uploadBox" required>
+            <input type="submit" value="Deblur" onclick="if(document.getElementById('uploadBox').value != '') { document.getElementById('wait').innerHTML = 'Wait for image to be downloaded' }">
+            <p id="wait"></p>
+        </form>
+    </div>
+</body>
+</html>
