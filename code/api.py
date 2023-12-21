@@ -10,9 +10,10 @@ app = Flask(__name__)
 
 # Load the DNN
 dnn = './train_model.h5'
-if path.exists(dnn) == False:
-    create_dnn()
-model = tf.keras.models.load_model('./train_model.h5')
+# if path.exists(dnn) == False:
+#     create_dnn()
+# It should always exist
+model = tf.keras.models.load_model('./train_model.h5', compile=False)
 
 UPLOAD_FOLDER = './'
 
@@ -33,8 +34,6 @@ def process_image():
         image_array = np.expand_dims(image_array, axis=0)
 
         # Deblurring
-        print("\n\n\nici\n\n\n")
-
         processed_image = model.predict(image_array)
 
         # Convert back to an image
@@ -47,4 +46,4 @@ def process_image():
         return send_from_directory(UPLOAD_FOLDER, "output.png", as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000, debug=True, host='0.0.0.0')
