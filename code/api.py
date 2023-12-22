@@ -4,7 +4,6 @@ import numpy as np
 import tensorflow as tf
 import io
 from os import path
-from dnn_best import create_dnn
 
 app = Flask(__name__)
 
